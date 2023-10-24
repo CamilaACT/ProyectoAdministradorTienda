@@ -1,0 +1,21 @@
+﻿@model ColorProducto
+
+@{
+    ViewData["Title"] = "Detalles   Color";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>En esta página se muestran los detalles del color.</p>
+
+<form>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control " readonly />
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Index","ColorProducto")'">Volver</button>
+        </div>
+    </div>
+</form>
+
