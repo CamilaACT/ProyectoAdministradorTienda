@@ -1,0 +1,52 @@
+﻿
+@model ProductoColorTallaCrea
+
+@{
+    ViewData["Title"] = "Creación de Productos";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>En esta página se crean los productos.</p>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="stock" class="form-label">Stock</label>
+        <input asp-for="stock" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="stockMax" class="form-label">Stock Máximo</label>
+        <input asp-for="stockMax" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="stockMin" class="form-label">Stock Minimo</label>
+        <input asp-for="stockMin" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="precio" class="form-label">Precio</label>
+        <input asp-for="precio" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="productoIdProduto" class="form-label">Tipo de Producto</label>
+        @Html.DropDownListFor(model => model.productoIdProduto, (IEnumerable<SelectListItem>)ViewBag.Productos, "Selecciona un producto", new { @class = "form-control" })
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="colorProductoIdColorProducto" class="form-label">Tipo de Producto</label>
+        @Html.DropDownListFor(model => model.colorProductoIdColorProducto, (IEnumerable<SelectListItem>)ViewBag.Colores, "Selecciona un color", new { @class = "form-control" })
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="tallaProductoIdTallaProducto" class="form-label">Tipo de Producto</label>
+        @Html.DropDownListFor(model => model.tallaProductoIdTallaProducto, (IEnumerable<SelectListItem>)ViewBag.Tallas, "Selecciona una talla", new { @class = "form-control" })
+
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+        <div class="col-6">
+            <a asp-action="Cancelar" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </div>
+</form>
+

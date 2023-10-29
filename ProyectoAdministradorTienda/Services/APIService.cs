@@ -42,6 +42,16 @@ namespace ProyectoAdministradorTienda.Services
             return false;
         }
 
+        public async Task<bool> DeleteProductoColorTalla(int IdProducto)
+        {
+            var response = await _httpClient.DeleteAsync("/api/ProductoColorTalla/"+IdProducto);
+            if (response.StatusCode == HttpStatusCode.NoContent)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<bool> DeleteTalla(int idTallaProducto)
         {
             var response = await _httpClient.DeleteAsync("/api/TallaProducto/"+idTallaProducto);
@@ -112,6 +122,19 @@ namespace ProyectoAdministradorTienda.Services
             return null;
         }
 
+        public async Task<ProductoColorTalla> GetProductoColorTalla(int IdProducto)
+        {
+            Console.WriteLine(IdProducto.ToString());
+            var response = await _httpClient.GetAsync("api/ProductoColorTalla/"+IdProducto);
+            if (response.IsSuccessStatusCode)
+            {
+                var json_response = await response.Content.ReadAsStringAsync();
+                ProductoColorTalla producto = JsonConvert.DeserializeObject<ProductoColorTalla>(json_response);
+                return producto;
+            }
+            return null;
+        }
+
         public async Task<List<Producto>> GetProductos()
         {
             var response = await _httpClient.GetAsync("api/Producto");//verbo get porque retorna todo
@@ -128,6 +151,25 @@ namespace ProyectoAdministradorTienda.Services
             else
             {
                 return new List<Producto>();
+            }
+        }
+
+        public async Task<List<ProductoColorTalla>> GetProductosColresTallas()
+        {
+            var response = await _httpClient.GetAsync("api/ProductoColorTalla");//verbo get porque retorna todo
+                                                                      // Procesa la respuesta correcta
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                // Imprime el JSON en la consola
+                //Console.WriteLine(data);
+                List<ProductoColorTalla> productos = JsonConvert.DeserializeObject<List<ProductoColorTalla>>(data);
+
+                return productos;
+            }
+            else
+            {
+                return new List<ProductoColorTalla>();
             }
         }
 
@@ -221,6 +263,19 @@ namespace ProyectoAdministradorTienda.Services
             return new ProductoCrea();
         }
 
+        public async Task<ProductoColorTallaCrea> PostProductoColorTalla(ProductoColorTallaCrea producto)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(producto), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("api/ProductoColorTalla/", content);
+            if (response.IsSuccessStatusCode)
+            {
+                var json_response = await response.Content.ReadAsStringAsync();
+                ProductoColorTallaCrea producto2 = JsonConvert.DeserializeObject<ProductoColorTallaCrea>(json_response);
+                return producto2;
+            }
+            return new ProductoColorTallaCrea();
+        }
+
         public async Task<TallaProducto> PostTalla(TallaProducto tallaProducto)
         {
             var content = new StringContent(JsonConvert.SerializeObject(tallaProducto), Encoding.UTF8, "application/json");
@@ -271,6 +326,19 @@ namespace ProyectoAdministradorTienda.Services
                 return prod;
             }
             return new ProductoCrea();
+        }
+
+        public async Task<ProductoColorTallaCrea> PutProducto(int IdProducto, ProductoColorTallaCrea producto)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(producto), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PutAsync("api/ProductoColorTalla/"+IdProducto, content);
+            if (response.IsSuccessStatusCode)
+            {
+                var json_response = await response.Content.ReadAsStringAsync();
+                ProductoColorTallaCrea prod = JsonConvert.DeserializeObject<ProductoColorTallaCrea>(json_response);
+                return prod;
+            }
+            return new ProductoColorTallaCrea();
         }
 
         public async Task<TallaProducto> PutTalla(int IdTallaProucto, TallaProducto tallaProducto)

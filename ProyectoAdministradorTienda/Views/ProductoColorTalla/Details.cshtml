@@ -1,0 +1,41 @@
+﻿@model ProductoColorTalla
+
+@{
+    ViewData["Title"] = "Detalles Producto";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>En esta página se muestran los detalles de los Productos.</p>
+
+<form>
+    <div class="mb-3">
+        <label class="form-label">Tipo producto Nombre</label>
+        <input asp-for="Producto.nombre" class="form-control " readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Color</label>
+        <input asp-for="ColorProducto.nombre" class="form-control " readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Talla</label>
+        <input asp-for="TallaProducto.talla" class="form-control " readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Stock</label>
+        <input asp-for="stock" class="form-control " readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Stock</label>
+        <input asp-for="stockMax" class="form-control " readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Stock</label>
+        <input asp-for="stockMin" class="form-control " readonly />
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Index","ProductoColorTalla")'">Volver</button>
+        </div>
+    </div>
+</form>
+

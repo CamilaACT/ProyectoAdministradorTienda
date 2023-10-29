@@ -38,5 +38,13 @@ namespace ProyectoAdministradorTienda.Services
         public Task<ProductoCrea> PutProducto(int IdProducto, ProductoCrea producto);
         public Task<Boolean> DeleteProducto(int IdProducto);
 
+        //ENDPOINT PARA GESTIONAR Productos
+        public Task<List<ProductoColorTalla>> GetProductosColresTallas();
+        public Task<ProductoColorTalla> GetProductoColorTalla(int IdProducto);
+
+        public Task<ProductoColorTallaCrea> PostProductoColorTalla(ProductoColorTallaCrea producto);
+        public Task<ProductoColorTallaCrea> PutProducto(int IdProducto, ProductoColorTallaCrea producto);
+        public Task<Boolean> DeleteProductoColorTalla(int IdProducto);
+
     }
 }

@@ -1,0 +1,40 @@
+﻿<!-- Se debe incluir la biblioteca para importr los iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@model List<ProductoColorTalla>
+@{
+    ViewData["Title"] = "Productos Registrados";
+}
+<h1>@ViewData["Title"]</h1>
+<button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Create","ProductoColorTalla")'">Nuevo Producto</button>
+
+<p>Esta página muestra la Lista de Productos Registrados.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre del Producto</th>
+            <th scope="col">Color</th>
+            <th scope="col">Talla</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Stock Min</th>
+            <th scope="col">Stock Max</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idProductoColorTalla</td>
+                <td>@item.Producto.nombre</td>
+                <td>@item.ColorProducto.nombre</td>
+                <td>@item.TallaProducto.talla</td>
+                <td>@item.stock</td>
+                <td>@item.stockMin</td>
+                <td>@item.stockMax</td>
+                <td><a asp-action="Edit" asp-route-IdProducto="@item.idProductoColorTalla" type="button" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;<a asp-action="Details" asp-route-IdProducto="@item.idProductoColorTalla" type="button" class="btn btn-primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i></a>&nbsp;<a asp-action="Delete" asp-route-IdProducto="@item.idProductoColorTalla" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+            </tr>
+        }
+    </tbody>
