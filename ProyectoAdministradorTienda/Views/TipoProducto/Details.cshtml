@@ -1,0 +1,25 @@
+﻿@model TipoProducto
+
+@{
+    ViewData["Title"] = "Detalles   Tipo";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>En esta página se muestran los detalles de las tipos.</p>
+
+<form>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="nombre" class="form-control " readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripcion</label>
+        <input asp-for="descripcion" class="form-control " readonly />
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Index","TipoProducto")'">Volver</button>
+        </div>
+    </div>
+</form>
+

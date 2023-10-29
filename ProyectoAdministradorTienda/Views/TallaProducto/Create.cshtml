@@ -1,16 +1,16 @@
-﻿@model ColorProducto
+﻿@model TallaProducto
 
 @{
-    ViewData["Title"] = "Creación de Colores";
+    ViewData["Title"] = "Creación de Tallas";
 }
 
 <h1>@ViewData["Title"]</h1>
-<p>En esta página se crean los colores.</p>
+<p>En esta página se crean las tallas.</p>
 
 <form method="post">
     <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input asp-for="nombre" class="form-control" />
+        <label class="form-label">Talla</label>
+        <input asp-for="talla" class="form-control" />
     </div>
     <div class="row">
         <div class="col-6">

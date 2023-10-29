@@ -2,9 +2,12 @@
 
 namespace ProyectoAdministradorTienda.Models
 {
-    public class ColorProducto
+    public class TipoProducto
     {
-        public int idColorProducto { get; set; }
+        
+        public int idTipoProducto { get; set; }
+
         public string nombre { get; set; }
+        public string descripcion { get; set; }
     }
 }

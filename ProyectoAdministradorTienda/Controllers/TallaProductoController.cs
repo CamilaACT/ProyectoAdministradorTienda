@@ -5,12 +5,12 @@ using ProyectoAdministradorTienda.Services;
 
 namespace ProyectoAdministradorTienda.Controllers
 {
-    public class ColorProductoController : Controller
+    public class TallaProductoController : Controller
     {
         // GET: ColorProductoController
         private readonly IAPIService _apiService;
 
-        public ColorProductoController(IAPIService apiService)
+        public TallaProductoController(IAPIService apiService)
         {
             _apiService = apiService;
         }
@@ -19,18 +19,18 @@ namespace ProyectoAdministradorTienda.Controllers
         // GET: ProductoController
         public async Task<IActionResult> Index()
         {
-            List<ColorProducto> productos = await _apiService.GetColores();
+            List<TallaProducto> productos = await _apiService.GetTalla();
             return View(productos);
         }
 
         // GET: ProductoController/Details/5
-        public async Task<IActionResult> Details(int idColorProducto)
+        public async Task<IActionResult> Details(int idTallaProducto)
         {
             //Console.WriteLine(color..ToString());
-            ColorProducto color2 = await _apiService.GetColor(idColorProducto);
-            if (color2 != null)
+            TallaProducto talla2 = await _apiService.GetTalla(idTallaProducto);
+            if (talla2 != null)
             {
-                return View(color2);
+                return View(talla2);
             }
             else
             {
@@ -46,32 +46,34 @@ namespace ProyectoAdministradorTienda.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ColorProducto color)
+        public async Task<IActionResult> Create(TallaProducto tallapto)
         {
-            ColorProducto color1 = await _apiService.PostColor(color);
+            TallaProducto talla1 = await _apiService.PostTalla(tallapto);
             return RedirectToAction("Index");
         }
 
 
 
         // GET: ProductoController/Edit/5
-        public async Task<IActionResult> Edit(int idColorProducto)
+        public async Task<IActionResult> Edit(int idTallaProducto)
         {
-            ColorProducto producto = await _apiService.GetColor(idColorProducto);
-            if (producto != null)
+            TallaProducto talla = await _apiService.GetTalla(idTallaProducto);
+            if (talla != null)
             {
-                return View(producto);
+                return View(talla);
             }
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ColorProducto color)
+        public async Task<IActionResult> Edit(TallaProducto tallapro)
         {
-            ColorProducto color2 = await _apiService.GetColor(color.idColorProducto);
-            if (color2 != null)
+            Console.WriteLine(tallapro.idTallaProducto.ToString());
+            Console.WriteLine(tallapro.talla.ToString());
+            TallaProducto talla2 = await _apiService.GetTalla(tallapro.idTallaProducto);
+            if (talla2 != null)
             {
-                ColorProducto color3 = await _apiService.PutColor(color.idColorProducto, color);
+                TallaProducto talla3 = await _apiService.PutTalla(tallapro.idTallaProducto, tallapro);
 
                 return RedirectToAction("Index");
             }
@@ -79,9 +81,9 @@ namespace ProyectoAdministradorTienda.Controllers
         }
 
         // GET: ProductoController/Delete/5
-        public async Task<IActionResult> Delete(int IdColorProducto)
+        public async Task<IActionResult> Delete(int idTallaProducto)
         {
-            Boolean producto2 = await _apiService.DeleteColor(IdColorProducto);
+            Boolean producto2 = await _apiService.DeleteTalla(idTallaProducto);
             if (producto2 != false)
             {
                 return RedirectToAction("Index");

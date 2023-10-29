@@ -1,0 +1,21 @@
+﻿@model TallaProducto
+
+@{
+    ViewData["Title"] = "Detalles   Talla";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>En esta página se muestran los detalles de las tallas.</p>
+
+<form>
+    <div class="mb-3">
+        <label class="form-label">Talla</label>
+        <input asp-for="talla" class="form-control " readonly />
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Index","TallaProducto")'">Volver</button>
+        </div>
+    </div>
+</form>
+
