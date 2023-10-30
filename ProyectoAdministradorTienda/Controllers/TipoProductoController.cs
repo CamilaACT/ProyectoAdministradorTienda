@@ -23,6 +23,19 @@ namespace ProyectoAdministradorTienda.Controllers
             List<TipoProducto> tipos = await _apiService.GetTipos();
             return View(tipos);
         }
+        public async Task<IActionResult> Search()
+        {
+            if (int.TryParse(Request.Query["IdProducto"], out int idProducto))
+            {
+                TipoProducto tipo2 = await _apiService.GetTipo(idProducto);
+                if (tipo2 != null)
+                {
+                    return View("Details", tipo2);
+                }
+            }
+
+            return View("ErrorView");
+        }
 
         // GET: ProductoController/Details/5
         public async Task<IActionResult> Details(int IdTipoProducto)

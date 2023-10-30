@@ -9,6 +9,14 @@
 <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Create","Producto")'">Nuevo Producto</button>
 
 <p>Esta página muestra la Lista de Productos Registrados.</p>
+<p>Buscar por ID:</p>
+<form method="get" action="@Url.Action("Search", "Producto")">
+    <div class="mb-3">
+        <label class="form-label">ID:</label>
+        <input type="text" name="IdProducto" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
 
 <table class="table">
     <thead>

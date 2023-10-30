@@ -51,7 +51,19 @@ namespace ProyectoAdministradorTienda.Controllers
             TallaProducto talla1 = await _apiService.PostTalla(tallapto);
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> Search()
+        {
+            if (int.TryParse(Request.Query["IdProducto"], out int idProducto))
+            {
+                TallaProducto tipo2 = await _apiService.GetTalla(idProducto);
+                if (tipo2 != null)
+                {
+                    return View("Details", tipo2);
+                }
+            }
 
+            return View("ErrorView");
+        }
 
 
         // GET: ProductoController/Edit/5

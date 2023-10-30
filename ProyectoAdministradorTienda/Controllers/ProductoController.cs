@@ -39,6 +39,19 @@ namespace ProyectoAdministradorTienda.Controllers
             }
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> Search()
+        {
+            if (int.TryParse(Request.Query["IdProducto"], out int idProducto))
+            {
+                Producto tipo2 = await _apiService.GetProducto(idProducto);
+                if (tipo2 != null)
+                {
+                    return View("Details", tipo2);
+                }
+            }
+
+            return View("ErrorView");
+        }
 
         // GET: ProductoController/Create
         public async Task<IActionResult> Create()
