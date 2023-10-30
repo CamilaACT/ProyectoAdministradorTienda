@@ -23,22 +23,36 @@ namespace ProyectoAdministradorTienda.Controllers
             List<ProductoColorTalla> tipos = await _apiService.GetProductosColresTallas();
             return View(tipos);
         }
+        public async Task<IActionResult> Search()
+        {
+            if (int.TryParse(Request.Query["IdProducto"], out int idProducto))
+            {
+                ProductoColorTalla tipo2 = await _apiService.GetProductoColorTalla(idProducto);
+                if (tipo2 != null)
+                {
+                    return View("Details",tipo2);
+                }
+            }
+
+            return View("ErrorView");
+        }
+
 
         // GET: ProductoController/Details/5
         public async Task<IActionResult> Details(int IdProducto)
-        {
-            //Console.WriteLine(color..ToString());
-            ProductoColorTalla tipo2 = await _apiService.GetProductoColorTalla(IdProducto);
-            if (tipo2 != null)
             {
-                return View(tipo2);
+                //Console.WriteLine(color..ToString());
+                ProductoColorTalla tipo2 = await _apiService.GetProductoColorTalla(IdProducto);
+                if (tipo2 != null)
+                {
+                    return View(tipo2);
+                }
+                else
+                {
+                    return View("Error");
+                }
+                return RedirectToAction("Index");
             }
-            else
-            {
-                return View("Error");
-            }
-            return RedirectToAction("Index");
-        }
 
         // GET: ProductoController/Create
         public async Task<IActionResult> Create()
