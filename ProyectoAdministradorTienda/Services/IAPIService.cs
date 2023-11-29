@@ -9,7 +9,7 @@ namespace ProyectoAdministradorTienda.Services
         //ENDPOINT PARA GESTIONAR COLORES
         public Task<List<ColorProducto>> GetColores();
         public Task<ColorProducto> GetColor(int IdColorProducto);
-        
+
         public Task<ColorProducto> PostColor(ColorProducto colorProducto);
         public Task<ColorProducto> PutColor(int IdColorProducto, ColorProducto colorProducto);
         public Task<Boolean> DeleteColor(int IdColorProducto);
@@ -45,6 +45,14 @@ namespace ProyectoAdministradorTienda.Services
         public Task<ProductoColorTallaCrea> PostProductoColorTalla(ProductoColorTallaCrea producto);
         public Task<ProductoColorTallaCrea> PutProducto(int IdProducto, ProductoColorTallaCrea producto);
         public Task<Boolean> DeleteProductoColorTalla(int IdProducto);
+
+        //ENDPOINT PARA GESTIONAR Usuarios
+        public Task<List<Usuario>> GetUsuarios();
+        public Task<Usuario> GetUsuario(int IdUsuario);
+        public Task<Usuario> GetValidacion(string Login, string Contrasenia);
+        public Task<Usuario> PostUsuario(Usuario usuario);
+        public Task<Usuario> PutUsuario(int IdUsuario, Usuario usuario);
+        public Task<Boolean> DeleteUsuario(int IdUsuario);
 
     }
 }

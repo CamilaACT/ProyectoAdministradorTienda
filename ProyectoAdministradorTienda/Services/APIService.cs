@@ -72,6 +72,16 @@ namespace ProyectoAdministradorTienda.Services
             return false;
         }
 
+        public async Task<bool> DeleteUsuario(int IdUsuario)
+        {
+            var response = await _httpClient.DeleteAsync("/api/Usuario/"+IdUsuario);
+            if (response.StatusCode == HttpStatusCode.NoContent)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<ColorProducto> GetColor(int idColorProducto)
         {
             
@@ -237,6 +247,52 @@ namespace ProyectoAdministradorTienda.Services
             }
         }
 
+        public async Task<Usuario> GetUsuario(int IdUsuario)
+        {
+            Console.WriteLine(IdUsuario.ToString());
+            var response = await _httpClient.GetAsync("api/TipoProducto/"+IdUsuario);
+            if (response.IsSuccessStatusCode)
+            {
+                var json_response = await response.Content.ReadAsStringAsync();
+                Usuario usuario = JsonConvert.DeserializeObject<Usuario>(json_response);
+                return usuario;
+            }
+            return null;
+
+        }
+
+        public async Task<List<Usuario>> GetUsuarios()
+        {
+            var response = await _httpClient.GetAsync("api/Usuario");//verbo get porque retorna todo
+                                                                     // Procesa la respuesta correcta
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                // Imprime el JSON en la consola
+                //Console.WriteLine(data);
+                List<Usuario> tipos = JsonConvert.DeserializeObject<List<Usuario>>(data);
+
+                return tipos;
+            }
+            else
+            {
+                return new List<Usuario>();
+            }
+        }
+
+        public async Task<Usuario> GetValidacion(string Login, string Contrasenia)
+        {
+            Console.WriteLine(Login.ToString());
+            var response = await _httpClient.GetAsync("api/Usuario/"+Login+"/"+Contrasenia);
+            if (response.IsSuccessStatusCode)
+            {
+                var json_response = await response.Content.ReadAsStringAsync();
+                Usuario usuario = JsonConvert.DeserializeObject<Usuario>(json_response);
+                return usuario;
+            }
+            return null;
+        }
+
         public async Task<ColorProducto> PostColor(ColorProducto colorProducto)
         {
             var content = new StringContent(JsonConvert.SerializeObject(colorProducto), Encoding.UTF8, "application/json");
@@ -300,6 +356,19 @@ namespace ProyectoAdministradorTienda.Services
                 return tipo2;
             }
             return new TipoProducto();
+        }
+
+        public async Task<Usuario> PostUsuario(Usuario usuario)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("api/Usuario/", content);
+            if (response.IsSuccessStatusCode)
+            {
+                var json_response = await response.Content.ReadAsStringAsync();
+                Usuario tipo2 = JsonConvert.DeserializeObject<Usuario>(json_response);
+                return tipo2;
+            }
+            return new Usuario();
         }
 
         public async Task<ColorProducto> PutColor(int idColorProducto, ColorProducto colorProducto)
@@ -366,6 +435,19 @@ namespace ProyectoAdministradorTienda.Services
                 return tipo2;
             }
             return new TipoProducto();
+        }
+
+        public async Task<Usuario> PutUsuario(int IdUsuario, Usuario usuario)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PutAsync("api/Usuario/"+IdUsuario, content);
+            if (response.IsSuccessStatusCode)
+            {
+                var json_response = await response.Content.ReadAsStringAsync();
+                Usuario usuario2 = JsonConvert.DeserializeObject<Usuario>(json_response);
+                return usuario2;
+            }
+            return new Usuario();
         }
     }
 }
