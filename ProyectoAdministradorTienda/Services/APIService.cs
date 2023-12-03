@@ -247,10 +247,10 @@ namespace ProyectoAdministradorTienda.Services
             }
         }
 
-        public async Task<Usuario> GetUsuario(int IdUsuario)
+        public async Task<Usuario> GetUsuario(int idUsuario)
         {
-            Console.WriteLine(IdUsuario.ToString());
-            var response = await _httpClient.GetAsync("api/TipoProducto/"+IdUsuario);
+            Console.WriteLine(idUsuario.ToString());
+            var response = await _httpClient.GetAsync("api/Usuario/"+idUsuario);
             if (response.IsSuccessStatusCode)
             {
                 var json_response = await response.Content.ReadAsStringAsync();
@@ -437,10 +437,10 @@ namespace ProyectoAdministradorTienda.Services
             return new TipoProducto();
         }
 
-        public async Task<Usuario> PutUsuario(int IdUsuario, Usuario usuario)
+        public async Task<Usuario> PutUsuario(int idUsuario, Usuario usuario)
         {
             var content = new StringContent(JsonConvert.SerializeObject(usuario), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PutAsync("api/Usuario/"+IdUsuario, content);
+            var response = await _httpClient.PutAsync("api/Usuario/"+idUsuario, content);
             if (response.IsSuccessStatusCode)
             {
                 var json_response = await response.Content.ReadAsStringAsync();

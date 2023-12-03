@@ -48,10 +48,10 @@ namespace ProyectoAdministradorTienda.Services
 
         //ENDPOINT PARA GESTIONAR Usuarios
         public Task<List<Usuario>> GetUsuarios();
-        public Task<Usuario> GetUsuario(int IdUsuario);
+        public Task<Usuario> GetUsuario(int idUsuario);
         public Task<Usuario> GetValidacion(string Login, string Contrasenia);
         public Task<Usuario> PostUsuario(Usuario usuario);
-        public Task<Usuario> PutUsuario(int IdUsuario, Usuario usuario);
+        public Task<Usuario> PutUsuario(int idUsuario, Usuario usuario);
         public Task<Boolean> DeleteUsuario(int IdUsuario);
 
     }

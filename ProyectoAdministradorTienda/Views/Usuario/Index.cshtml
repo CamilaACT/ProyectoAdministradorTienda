@@ -1,0 +1,41 @@
+﻿<!-- Se debe incluir la biblioteca para importr los iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@model List<Usuario>
+@{
+    ViewData["Title"] = "Usuarios Registrados";
+}
+<h1>@ViewData["Title"]</h1>
+<button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Create","Usuario")'">Nuevo Producto</button>
+
+<p>Esta página muestra la Lista de Usuarios Registrados.</p>
+<p>Buscar por ID:</p>
+<form method="get" action="@Url.Action("Search", "Usuario")">
+    <div class="mb-3">
+        <label class="form-label">ID:</label>
+        <input type="text" name="idUsuario" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nivel de seguridad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.idUsuario</td>
+                <td>@item.nombre</td>
+                <td>@item.apellido</td>
+                <td>@item.numeroSeguridad</td>
+                <td><a asp-action="Edit" asp-route-idUsuario="@item.idUsuario" type="button" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp;<a asp-action="Details" asp-route-IdUsuario="@item.idUsuario" type="button" class="btn btn-primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i></a>&nbsp;<a asp-action="Delete" asp-route-IdUsuario="@item.idUsuario" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+            </tr>
+        }
+    </tbody>

@@ -5,22 +5,22 @@ namespace ProyectoAdministradorTienda.Models
     public class Usuario
     {
         
-        public int IdUsuario { get; set; }
+        public int idUsuario { get; set; }
 
-        public string Cedula { get; set; }
+        public string cedula { get; set; }
 
-        public string Nombre { get; set; }
-
-
-        public string Apellido { get; set; }
+        public string nombre { get; set; }
 
 
-        private string Login { get; set; }
+        public string apellido { get; set; }
 
 
-        private string Contrasenia { get; set; }
+        public string login { get; set; }
 
 
-        private int NumeroSeguridad { get; set; }
+        public string contrasenia { get; set; }
+
+
+        public int numeroSeguridad { get; set; }
     }
 }
